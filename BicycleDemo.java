@@ -1,3 +1,5 @@
+import com.examples.bicycle.ACMEBicycle;
+
 class BicycleDemo {
 
     public static void main(String[] args) {

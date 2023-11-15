@@ -1,4 +1,6 @@
-class ACMEBicycle implements Bicycle {
+package com.examples.bicycle;
+
+public class ACMEBicycle implements Bicycle {
     
     int cadence = 0;
     int speed = 0;
@@ -20,7 +22,7 @@ class ACMEBicycle implements Bicycle {
         speed -= decrement;
     }
 
-    void printStatus () {
+    public void printStatus () {
         System.out.println("cadence: " + cadence + " speed: " + speed + 
         " gear: " + gear);
     }

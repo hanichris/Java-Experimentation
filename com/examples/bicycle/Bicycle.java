@@ -1,3 +1,5 @@
+package com.examples.bicycle;
+
 interface Bicycle {
     void changeCadence (int newValue);
 
