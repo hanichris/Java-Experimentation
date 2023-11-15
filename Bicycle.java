@@ -1,27 +1,9 @@
-class Bicycle {
-    
-    int cadence = 0;
-    int speed = 0;
-    int gear = 1;
+interface Bicycle {
+    void changeCadence (int newValue);
 
-    void changeCadence (int newValue) {
-        cadence += newValue;
-    }
+    void changeGear (int newValue);
 
-    void changeGear (int newValue) {
-        gear += newValue;
-    }
+    void speedUp (int increment);
 
-    void speedUp (int increment) {
-        speed += increment;
-    }
-
-    void applyBrakes (int decrement) {
-        speed -= decrement;
-    }
-
-    void printStatus () {
-        System.out.println("cadence: " + cadence + " speed: " + speed + 
-        " gear: " + gear);
-    }
+    void applyBrakes (int decrement);
 }
