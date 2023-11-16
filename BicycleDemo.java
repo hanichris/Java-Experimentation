@@ -18,7 +18,8 @@ class BicycleDemo {
         bike2.changeCadence(40);
         bike2.speedUp(10);
         bike2.changeGear(3);
-        bike2.setHeight(10);
+        bike2.setSeatHeight(10);
+        System.out.println(bike2.getSeatHeight());
         bike2.printStatus();
     }
 }
