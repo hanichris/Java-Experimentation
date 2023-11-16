@@ -2,9 +2,15 @@ package com.examples.bicycle;
 
 public class ACMEBicycle implements Bicycle {
     
-    int cadence = 0;
-    int speed = 0;
+    int cadence;
+    int speed;
     int gear = 1;
+
+    public ACMEBicycle(int startCadence, int startGear, int startSpeed) {
+        cadence = startCadence;
+        gear = startGear;
+        speed = startSpeed;
+    }
 
     public void changeCadence (int newValue) {
         cadence += newValue;
