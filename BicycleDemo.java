@@ -1,10 +1,11 @@
 import com.examples.bicycle.ACMEBicycle;
+import com.examples.bicycle.MountainBike;
 
 class BicycleDemo {
 
     public static void main(String[] args) {
-        ACMEBicycle bike1 = new ACMEBicycle();
-        ACMEBicycle bike2 = new ACMEBicycle();
+        ACMEBicycle bike1 = new ACMEBicycle(0, 1, 0);
+        MountainBike bike2 = new MountainBike(5, 0, 1, 0);
         
         bike1.changeCadence(50);
         bike1.speedUp(10);
@@ -17,6 +18,7 @@ class BicycleDemo {
         bike2.changeCadence(40);
         bike2.speedUp(10);
         bike2.changeGear(3);
+        bike2.setHeight(10);
         bike2.printStatus();
     }
 }
