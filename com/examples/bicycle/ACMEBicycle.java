@@ -12,6 +12,12 @@ public class ACMEBicycle implements Bicycle {
         speed = startSpeed;
     }
 
+    public ACMEBicycle() {
+        cadence = 10;
+        gear = 1;
+        speed = 0;
+    }
+
     public void changeCadence (int newValue) {
         cadence += newValue;
     }
