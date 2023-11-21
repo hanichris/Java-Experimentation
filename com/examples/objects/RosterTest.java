@@ -2,6 +2,7 @@ package com.examples.objects;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class RosterTest {
@@ -63,6 +64,36 @@ public class RosterTest {
         for (Person p : roster) {
             if (tester.test(p)) {
                 block.accept(p);
+            }
+        }
+    }
+
+    // 7.2) Working with a functional interface that returns a value.
+    public static void processPersonsWithFunction(
+        List<Person> roster,
+        Predicate<Person> tester,
+        Function<Person, String> mapper,
+        Consumer<String> block
+    ) {
+        for (Person p  : roster) {
+            if (tester.test(p)) {
+                String data = mapper.apply(p);
+                block.accept(data);
+            }
+        }
+    }
+
+    // 8.) Using Generics more extensively.
+    public static <X, Y> void processElements(
+        Iterable<X> source,
+        Predicate<X> tester,
+        Function<X, Y> mapper,
+        Consumer<Y> block
+    ) {
+        for (X p : source) {
+            if (tester.test(p)) {
+                Y data = mapper.apply(p);
+                block.accept(data);
             }
         }
     }
@@ -145,5 +176,54 @@ public class RosterTest {
             p -> p.printPerson()
         );
         System.out.println();
+
+        // Invoke method 7.2:
+        System.out.println("Persons who are eligible for Selective Service " +
+            "(with Predicate Function, and Consumer Parameters):");
+        processPersonsWithFunction(
+            roster,
+            p -> p.getGender() == Person.Sex.MALE
+                && p.getAge() >= 18
+                && p.getAge() <= 25,
+            p -> p.getEmailAddress(),
+            email -> System.out.println(email)
+        );
+        System.out.println();
+
+        // Invoke method 8: Using Generics extensively.
+        System.out.println("Persons who are eligible for Selective Service " +
+            "(generic version):");
+        processElements(
+            roster,
+            p -> p.getGender() == Person.Sex.MALE
+                && p.getAge() >= 18
+                && p.getAge() <= 25,
+            p -> p.getEmailAddress(),
+            email -> System.out.println(email)
+        );
+        System.out.println();
+
+        /** The above method invocation performs the following actions:
+         *  1 -> Obtains a source of objects from the collection source.
+         *  2 -> Filters objects that match the Predicate object tester.
+         *  3 -> Maps each filtered object to a value as specified by the Function
+         *       object mapper.
+         *  4 -> Performs an action on each mapped object as specified by the Consumer
+         *       block object.
+         *  All the above can be replaced with an aggregate operation.
+         */
+
+        // Approach 9: Use bulk data operations that accept lambda expressions as parameters.
+        System.out.println("Persons who are eligible for Selective Service " +
+            "(with bulk data operations):");
+        roster
+            .stream()
+            .filter(
+                p -> p.getGender() == Person.Sex.MALE
+                    && p.getAge() >= 18
+                    && p.getAge() <= 25)
+            .map(
+                p -> p.getEmailAddress())
+            .forEach(email -> System.out.println(email));
     }
 }
