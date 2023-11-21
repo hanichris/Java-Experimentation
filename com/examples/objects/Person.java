@@ -44,6 +44,10 @@ public class Person {
         return birthday;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static int compareByAge(Person a, Person b) {
         return a.birthday.compareTo(b.birthday);
     }
