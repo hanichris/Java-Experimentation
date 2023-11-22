@@ -1,8 +1,7 @@
 package com.examples.defaultmethods;
 
 import java.util.*;
-import java.util.stream.*;
-import java.lang.*;
+
 
 public interface Deck {
 
