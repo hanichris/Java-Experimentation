@@ -26,9 +26,8 @@ public class PlayingCard implements Card {
             } else {
                 return false;
             }
-        } else {
-            return false;
         }
+        return false; 
     }
 
     public int hashCode() {
