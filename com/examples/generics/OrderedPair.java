@@ -12,6 +12,9 @@ public class OrderedPair<K, V> implements Pair<K, V> {
     public K getKey() { return key; }
     public V getValue() { return value; }
 
+    public void setKey(K key) { this.key = key; }
+    public void setValue(V value) { this.value = value; }
+
     public String toString() {
         return this.key + ": " + this.value;
     }
@@ -24,10 +27,16 @@ public class OrderedPair<K, V> implements Pair<K, V> {
 
         // Substitute a type parameter with a parameterized type.
         Pair<String, Box<Integer>> p4 = new OrderedPair<String,Box<Integer>>("primes", new Box<>());
-        p4.getValue().set(2);
+
         System.out.println(p1);
         System.out.println(p2);
         System.out.println(p3);
         System.out.println(p4);
+
+        Pair<Integer, String> p5 = new OrderedPair<Integer,String>(1, "apple");
+        Pair<Integer, String> p6 = new OrderedPair<Integer,String>(2, "pear");
+        boolean same = Util.<Integer, String>compare(p5, p6);
+
+        System.out.println(same);
     }
 }
