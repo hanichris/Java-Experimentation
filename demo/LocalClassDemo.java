@@ -1,3 +1,4 @@
+package demo;
 import com.examples.objects.LocalClass;
 
 public class LocalClassDemo {

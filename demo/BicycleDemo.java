@@ -1,3 +1,5 @@
+package demo;
+
 import com.examples.bicycle.ACMEBicycle;
 import com.examples.bicycle.MountainBike;
 

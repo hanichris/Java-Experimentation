@@ -1,3 +1,5 @@
+package demo;
+
 public class ArrayCopyDemo {
     
     public static void main(String[] args) {

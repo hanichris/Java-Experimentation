@@ -1,3 +1,4 @@
+package demo;
 import com.examples.objects.Point;
 import com.examples.objects.Rectangle;
 

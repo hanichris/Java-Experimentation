@@ -1,3 +1,4 @@
+package demo;
 public class MultiDimArrayDemo {
     public static void main(String[] args) {
         String[][] names = {

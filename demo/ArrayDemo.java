@@ -1,3 +1,4 @@
+package demo;
 public class ArrayDemo {
     public static void main(String[] args) {
         byte[] anArray = new byte[10];
