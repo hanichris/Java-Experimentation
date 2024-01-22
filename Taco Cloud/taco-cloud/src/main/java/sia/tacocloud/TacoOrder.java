@@ -16,14 +16,6 @@ public class TacoOrder {
     private List<Taco> tacos = new ArrayList<>();
 
     public TacoOrder() {
-        deliveryName = "";
-        deliveryState = "";
-        deliveryCity = "";
-        deliveryState = "";
-        deliveryZip = "";
-        ccNumber = "";
-        ccExpiration = "";
-        ccCVV = "";
     }
 
     public TacoOrder(
@@ -34,7 +26,7 @@ public class TacoOrder {
         String deliveryZip,
         String ccNumber,
         String ccExpiration,
-        String ccCvv
+        String ccCVV
     ) {
         this.deliveryName = deliveryName;
         this.deliveryStreet = deliveryStreet;
@@ -43,7 +35,7 @@ public class TacoOrder {
         this.deliveryZip = deliveryZip;
         this.ccNumber = ccNumber;
         this.ccExpiration = ccExpiration;
-        this.ccCVV = ccCvv;
+        this.ccCVV = ccCVV;
     }
 
     // Getter methods
@@ -67,16 +59,20 @@ public class TacoOrder {
         return this.deliveryZip;
     }
 
-    public String getCCNumber() {
+    public String getCcNumber() {
         return this.ccNumber;
     }
 
-    public String getCCExpiration() {
+    public String getCcExpiration() {
         return this.ccExpiration;
     }
 
-    public String getCCCVV() {
+    public String getCcCVV() {
         return this.ccCVV;
+    }
+
+    public List<Taco> getTacos() {
+        return this.tacos;
     }
 
     // Setter methods
@@ -100,11 +96,11 @@ public class TacoOrder {
         this.deliveryZip = deliveryZip;
     }
 
-    public void setCCNumber(String ccNumber) {
+    public void setCcNumber(String ccNumber) {
         this.ccNumber = ccNumber;
     }
 
-    public void setCCExpiration(String ccExpiration) {
+    public void setCcExpiration(String ccExpiration) {
         this.ccExpiration = ccExpiration;
     }
 
@@ -112,8 +108,17 @@ public class TacoOrder {
         this.ccCVV = ccCVV;
     }
 
-
     public void addTaco(Taco taco) {
         tacos.add(taco);
+    }
+
+    @Override
+    public String toString() {
+        return String.format( 
+            "\nDelivery address: [Name] = %s, [City] = %s\ncc details: [Number] = %s\nOrder count: [Tacos] = %d",
+            this.deliveryName,
+            this.deliveryCity,
+            this.ccNumber,
+            this.tacos.size());
     }
 }
