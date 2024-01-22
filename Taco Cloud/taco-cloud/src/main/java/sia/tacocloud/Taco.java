@@ -38,7 +38,7 @@ public class Taco {
     @Override
     public String toString() {
         if (this.ingredients.size() == 0) {
-            return "Taco[name='undefined', Ingredients=None]";
+            return "Taco[name='', Ingredients=None]";
         }
         StringBuilder ingredients = new StringBuilder();
         for (Ingredient ingredient : this.ingredients) {
