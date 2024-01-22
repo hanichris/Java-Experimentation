@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,11 +18,15 @@ import sia.tacocloud.TacoOrder;
 import sia.tacocloud.Ingredient.TYPE;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
+
+    private static Logger log = LoggerFactory.getLogger(DesignTacoController.class);
 
     @ModelAttribute
     public void addingIngredientsToModel(Model model) {
@@ -63,6 +69,18 @@ public class DesignTacoController {
     public String showDesignForm() {
         return "design";
     }
+
+    @PostMapping
+    public String processTaco(
+        Taco taco,
+        @ModelAttribute TacoOrder tacoOrder) {
+        tacoOrder.addTaco(taco);
+        log.info("Processing taco: {}", taco);
+        log.info("Taco order placed: {}", tacoOrder);
+        
+        return "redirect:/orders/current";
+    }
+    
     
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, TYPE type) {
         return ingredients
