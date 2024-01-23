@@ -1,17 +1,39 @@
 package sia.tacocloud;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
+
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class TacoOrder {
+    @NotBlank(message = "Delivery name is required")
     private String deliveryName;
+
+    @NotBlank(message = "Street is required")
     private String deliveryStreet;
+
+    @NotBlank(message = "City is required")
     private String deliveryCity;
+
+    @NotBlank(message = "State is required")
     private String deliveryState;
+
+    @NotBlank(message = "Zip code is required")
     private String deliveryZip;
+
+    @CreditCardNumber(message = "Not a valid credit card number")
     private String ccNumber;
+
+    @Pattern(regexp = "^(0[1-9]|1[0-2])([\\/])([2-9][4-9])$", message = "MM/YY")
     private String ccExpiration;
-    private String ccCVV;
+
+    @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
+    private BigDecimal ccCVV;
 
     private List<Taco> tacos = new ArrayList<>();
 
@@ -26,7 +48,7 @@ public class TacoOrder {
         String deliveryZip,
         String ccNumber,
         String ccExpiration,
-        String ccCVV
+        BigDecimal ccCVV
     ) {
         this.deliveryName = deliveryName;
         this.deliveryStreet = deliveryStreet;
@@ -67,7 +89,7 @@ public class TacoOrder {
         return this.ccExpiration;
     }
 
-    public String getCcCVV() {
+    public BigDecimal getCcCVV() {
         return this.ccCVV;
     }
 
@@ -104,7 +126,7 @@ public class TacoOrder {
         this.ccExpiration = ccExpiration;
     }
 
-    public void setCCCVV(String ccCVV) {
+    public void setCCCVV(BigDecimal ccCVV) {
         this.ccCVV = ccCVV;
     }
 
