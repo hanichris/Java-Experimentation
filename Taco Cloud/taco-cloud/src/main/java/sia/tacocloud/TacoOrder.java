@@ -2,7 +2,9 @@ package sia.tacocloud;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -11,6 +13,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 public class TacoOrder {
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private Date placedAt;
+
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
 
@@ -41,6 +47,8 @@ public class TacoOrder {
     }
 
     public TacoOrder(
+        Long id,
+        Date placedAt,
         String deliveryName,
         String deliveryStreet,
         String deliveryCity,
@@ -50,6 +58,8 @@ public class TacoOrder {
         String ccExpiration,
         BigDecimal ccCVV
     ) {
+        this.id = id;
+        this.placedAt = placedAt;
         this.deliveryName = deliveryName;
         this.deliveryStreet = deliveryStreet;
         this.deliveryCity = deliveryCity;
@@ -61,6 +71,18 @@ public class TacoOrder {
     }
 
     // Getter methods
+    public Long getId() {
+        return this.id;
+    }
+
+    public Date getPlacedAt() {
+        return this.placedAt;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public String getDeliveryName() {
         return this.deliveryName;
     }
@@ -98,6 +120,14 @@ public class TacoOrder {
     }
 
     // Setter methods
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPlacedAt(Date placedAt) {
+        this.placedAt = placedAt;
+    }
+
     public void setDeliveryName(String deliveryName) {
         this.deliveryName = deliveryName;
     }
@@ -142,5 +172,29 @@ public class TacoOrder {
             this.deliveryCity,
             this.ccNumber,
             this.tacos.size());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            id,
+            placedAt,
+            deliveryName,
+            deliveryStreet,
+            deliveryCity,
+            deliveryState,
+            deliveryZip,
+            ccNumber,
+            ccExpiration,
+            ccCVV
+        );
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) return true;
+        if (that == null || getClass() != that.getClass()) return false;
+        TacoOrder tacoOrder = (TacoOrder) that;
+        return Objects.equals(id, tacoOrder.id);
     }
 }
