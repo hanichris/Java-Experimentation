@@ -1,8 +1,7 @@
 package sia.tacocloud.web;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +17,7 @@ import sia.tacocloud.Ingredient;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoOrder;
 import sia.tacocloud.Ingredient.TYPE;
+import sia.tacocloud.data.IngredientRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,21 +29,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class DesignTacoController {
 
     private static Logger log = LoggerFactory.getLogger(DesignTacoController.class);
+    private final IngredientRepository ingredientRepo;
+
+    public DesignTacoController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
 
     @ModelAttribute
     public void addingIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-            new Ingredient("FLTO", "Flour Tortilla", TYPE.WRAP),
-            new Ingredient("COTO", "Corn Tortilla", TYPE.WRAP),
-            new Ingredient("GRBF", "Ground Beef", TYPE.PROTEIN),
-            new Ingredient("CARN", "Carnitas", TYPE.PROTEIN),
-            new Ingredient("TMTO", "Diced Tomatoes", TYPE.VEGGIES),
-            new Ingredient("LETC", "Lettuce", TYPE.VEGGIES),
-            new Ingredient("CHERD", "Cheddar", TYPE.CHEESE),
-            new Ingredient("JACK", "Monterrey Jack", TYPE.CHEESE),
-            new Ingredient("SLSA", "Salsa", TYPE.SAUCE),
-            new Ingredient("SRCR", "Sour Cream", TYPE.SAUCE)
-        );
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
 
         TYPE[] types = Ingredient.TYPE.values();
         for (TYPE type : types) {
@@ -88,9 +82,8 @@ public class DesignTacoController {
     }
     
     
-    private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, TYPE type) {
-        return ingredients
-                    .stream()
+    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, TYPE type) {
+        return StreamSupport.stream(ingredients.spliterator(), false)
                     .filter(x -> x.getType().equals(type))
                     .collect(Collectors.toList());
     }
