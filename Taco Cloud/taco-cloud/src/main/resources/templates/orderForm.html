@@ -67,7 +67,7 @@
         <br/>
         <label>
             CVV:
-            <input th:field="*{ccCVV}" type="number" />
+            <input th:field="*{ccCVV}" type="text" />
             <span th:if="${#fields.hasErrors('ccCVV')}" th:errors="*{ccCVV}">CC CVV ERROR</span>
         </label>
         <br/>
