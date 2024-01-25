@@ -39,7 +39,7 @@ public class TacoOrder {
     private String ccExpiration;
 
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
-    private BigDecimal ccCVV;
+    private String ccCVV;
 
     private List<Taco> tacos = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class TacoOrder {
         String deliveryZip,
         String ccNumber,
         String ccExpiration,
-        BigDecimal ccCVV
+        String ccCVV
     ) {
         this.id = id;
         this.placedAt = placedAt;
@@ -111,7 +111,7 @@ public class TacoOrder {
         return this.ccExpiration;
     }
 
-    public BigDecimal getCcCVV() {
+    public String getCcCVV() {
         return this.ccCVV;
     }
 
@@ -156,7 +156,7 @@ public class TacoOrder {
         this.ccExpiration = ccExpiration;
     }
 
-    public void setCCCVV(BigDecimal ccCVV) {
+    public void setCCCVV(String ccCVV) {
         this.ccCVV = ccCVV;
     }
 
