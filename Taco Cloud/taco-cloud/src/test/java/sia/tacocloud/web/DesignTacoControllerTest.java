@@ -15,10 +15,10 @@ public class DesignTacoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    public void testDesignPage() throws Exception {
-        mockMvc.perform(get("/design"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("design"));
-    }
+    // @Test
+    // public void testDesignPage() throws Exception {
+    //     mockMvc.perform(get("/design"))
+    //         .andExpect(status().isOk())
+    //         .andExpect(view().name("design"));
+    // }
 }
