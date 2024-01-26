@@ -12,12 +12,14 @@ import sia.tacocloud.Ingredient;
 
 @Repository
 public class JdbcIngredientRepository implements IngredientRepository {
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
+
+    // @Autowired
+    // public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+    //     this.jdbcTemplate = jdbcTemplate;
+    // }
 
     @Override
     public Iterable<Ingredient> findAll() {
