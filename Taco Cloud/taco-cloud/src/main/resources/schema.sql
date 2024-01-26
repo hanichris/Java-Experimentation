@@ -22,8 +22,9 @@ CREATE TABLE IF NOT EXISTS Taco (
 
 
 CREATE TABLE IF NOT EXISTS Ingredient_Ref (
-    ingredient CHAR(4) NOT NULL,
+    ingredient VARCHAR(4) NOT NULL,
     taco BIGINT NOT NULL,
+    taco_key BIGINT NOT NULL,
     CONSTRAINT PK_ENTRY PRIMARY KEY (ingredient, taco)
 );
 
