@@ -11,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
 import sia.tacocloud.TacoOrder;
+import sia.tacocloud.data.OrderRepository;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -21,6 +22,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class OrderController {
     
     private static Logger log = LoggerFactory.getLogger(OrderController.class);
+
+    private OrderRepository orderRepo;
+
+    public OrderController(OrderRepository orderRepo) {
+        this.orderRepo = orderRepo;
+    }
 
     @GetMapping("/current")
     public String orderForm() {
@@ -35,6 +42,7 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+        orderRepo.save(order);
         log.info("Order submitted: {}", order);
         sessionStatus.setComplete();
         return "redirect:/";
