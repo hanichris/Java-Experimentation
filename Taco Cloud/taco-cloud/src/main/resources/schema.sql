@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS Taco_Order (
     cc_number CHAR(16) NOT NULL,
     cc_expiration CHAR(5) NOT NULL,
     cc_CVV CHAR(3) NOT NULL,
-    placed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    placed_at TIMESTAMP NOT NULL
 );
 
 
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Taco (
     taco_order_key BIGINT NOT NULL,
     name VARCHAR(50) NOT NULL,
     taco_order BIGINT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    created_at TIMESTAMP NOT NULL
 );
 
 
