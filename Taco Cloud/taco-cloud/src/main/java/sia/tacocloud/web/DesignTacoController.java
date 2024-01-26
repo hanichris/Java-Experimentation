@@ -30,9 +30,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class DesignTacoController {
 
     private static Logger log = LoggerFactory.getLogger(DesignTacoController.class);
+
+    // @Autowired
     private final IngredientRepository ingredientRepo;
 
-    @Autowired
     public DesignTacoController(IngredientRepository ingredientRepo) {
         this.ingredientRepo = ingredientRepo;
     }
