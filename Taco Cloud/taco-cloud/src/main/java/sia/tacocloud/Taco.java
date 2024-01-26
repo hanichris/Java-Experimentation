@@ -1,6 +1,5 @@
 package sia.tacocloud;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -23,14 +22,13 @@ public class Taco {
     private List<Ingredient> ingredients;
 
     public Taco() {
-        name = "";
-        ingredients = new ArrayList<>();
     }
 
-    public Taco(Long id, String name, List<Ingredient> ingredients) {
+    public Taco(Long id, String name, List<Ingredient> ingredients, Date createdAt) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
+        this.createdAt = createdAt;
     }
 
     // Getter methods
@@ -69,7 +67,7 @@ public class Taco {
 
     @Override
     public String toString() {
-        if (this.ingredients.size() == 0) {
+        if (this.ingredients == null && this.name == null) {
             return "Taco[name='', Ingredients=None]";
         }
         StringBuilder ingredients = new StringBuilder();
@@ -77,7 +75,9 @@ public class Taco {
             ingredients.append(ingredient.toString());
             ingredients.append("\n");
         }
-        return String.format("Taco[name=%s] [Ingredients:]\n%s", name, ingredients);
+        return String.format(
+            "Taco[name=%s, createdAt=%s] [Ingredients:]\n%s",
+            name, createdAt, ingredients);
     }
 
     @Override
