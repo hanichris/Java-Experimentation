@@ -156,7 +156,7 @@ public class TacoOrder {
         this.ccExpiration = ccExpiration;
     }
 
-    public void setCCCVV(String ccCVV) {
+    public void setCcCVV(String ccCVV) {
         this.ccCVV = ccCVV;
     }
 
@@ -167,10 +167,10 @@ public class TacoOrder {
     @Override
     public String toString() {
         return String.format( 
-            "\nDelivery address: [Name] = %s, [City] = %s\ncc details: [Number] = %s\nOrder count: [Tacos] = %d",
+            "\nDelivery address: [Name] = %s, [City] = %s\ncc details: [CVV] = %s\nOrder count: [Tacos] = %d",
             this.deliveryName,
             this.deliveryCity,
-            this.ccNumber,
+            this.ccCVV,
             this.tacos.size());
     }
 
